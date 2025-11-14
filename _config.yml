@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f25/proj-frontiers-f25-12
 owner: ucsb-cs156-f25
 repo_name: proj-frontiers-f25-12
-pull_requests: [{"author":{"id":"U_kgDOBaYVeg","is_bot":false,"login":"HRehwald","name":"Hauke Rehwald"},"headRefName":"hrehwald-sanitize-email","number":14,"title":"hrehwald sanitize emails for backend","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/14"}]
+pull_requests: [{"author":{"id":"U_kgDOCqFMyA","is_bot":false,"login":"jaytan3966","name":"Jayden Tan"},"headRefName":"8-change-title-of-site-from-vite-react-to-frontiers","number":15,"title":"Fixed site title and created test for title","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/15"},{"author":{"id":"U_kgDOBaYVeg","is_bot":false,"login":"HRehwald","name":"Hauke Rehwald"},"headRefName":"hrehwald-sanitize-email","number":14,"title":"hrehwald sanitize emails for backend","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/14"}]
