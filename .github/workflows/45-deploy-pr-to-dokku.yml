@@ -30,4 +30,3 @@ jobs:
           else
             echo "not deploy label - skipping"
           fi
-          

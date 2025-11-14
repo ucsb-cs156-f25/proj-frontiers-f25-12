@@ -6,12 +6,12 @@ name: "85-slack-reflection-prompt.yml"
 on:
   schedule:
     # During Daylight Saving Time (Mar–Nov), Pacific is UTC-7
-    - cron: "0 16 * * 4"  # 9 AM PDT
+    - cron: "0 16 * * 4" # 9 AM PDT
 
     # During Standard Time (Nov–Mar), Pacific is UTC-8
     # - cron: "0 17 * * 4"  # 9 AM PST
 
-  workflow_dispatch:  # Allows manual triggering
+  workflow_dispatch: # Allows manual triggering
 
 env:
   PAT: ${{ secrets.PAT }}
@@ -20,10 +20,9 @@ env:
   REPO_NAME: ${{ github.event.repository.name }}
   # The columns in the Kanban board that we are interested in
   START_DATE: "2025-05-10"
-  END_DATE: "2025-06-06"  # Set the end date for the workflow
+  END_DATE: "2025-06-06" # Set the end date for the workflow
 
 jobs:
-
   # This job checks if the current date is before the END_DATE
   check_date:
     name: Check Date
@@ -37,7 +36,7 @@ jobs:
           current_date=$(date +%Y-%m-%d)
           end_date="${{ env.END_DATE }}"
           start_date="${{ env.START_DATE }}"
-          
+
           if [[ "$current_date" > "$end_date" ]]; then
             echo "Current date is after $end_date. Stopping workflow."
             echo "continue=false" >> "$GITHUB_OUTPUT"
@@ -49,7 +48,7 @@ jobs:
             echo "Current date is before $start_date. Stopping workflow."
             echo "continue=false" >> "$GITHUB_OUTPUT"
           fi
-          
+
           OWNER=${{ github.repository_owner }}
           OWNER_PLUS_REPOSITORY=${{github.repository}}
           REPOSITORY=${OWNER_PLUS_REPOSITORY/$OWNER\//}  
@@ -65,7 +64,7 @@ jobs:
             echo "Contents of $GITHUB_OUTPUT:"
             cat "$GITHUB_OUTPUT"
           fi
-        
+
   # This job extracts the team name from the repository name
   # The team name is used to find the project ID for the team
   # It does this by extracting the last 6 characters of the repository name
@@ -91,7 +90,6 @@ jobs:
 
           echo "repository=${REPOSITORY}" >> "$GITHUB_OUTPUT"
           echo "team=${TEAM_NAME}" >> "$GITHUB_OUTPUT"
-          
 
   send-to-slack:
     name: Send Report to Slack
@@ -105,7 +103,7 @@ jobs:
           echo "TEAM_TO_CHANNEL: ${{ env.TEAM_TO_CHANNEL }}"
           echo "ORG_NAME: ${{ env.ORG_NAME }}"
           echo "Slack Channel: ${{ fromJSON(env.TEAM_TO_CHANNEL)[needs.get_team_name.outputs.team] }}"
-   
+
       #This step sends the report to the Slack channel associated with the team
       - name: Send Report to Slack
         uses: archive/github-actions-slack@v2.10.1
@@ -132,7 +130,7 @@ jobs:
                     "text": "Hey team! It's time for our weekly reflection on contributions and team dynamics. Consider the following things:"
                   }
                 },
-  
+
                 {
                   "type": "context",
                   "elements": [{
@@ -161,7 +159,7 @@ jobs:
                     "text": "> (4) Is each of us doing *high quality* work?"
                   }]
                 },
-         
+
                 {
                   "type": "section",
                   "text": {
@@ -185,6 +183,3 @@ jobs:
                   "type": "divider"
                 },
               ]
-
-
-

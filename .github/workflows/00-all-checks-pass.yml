@@ -5,7 +5,6 @@ name: 00 - All Checks Pass
 # The workflow will wait for all other checks to finish before proceeding.
 # If any of the required checks fail, the workflow will exit with an error.
 
-
 # This workflow updates the open PRs in
 # _config.yml each time a pull request is made
 # or there is a push to main.  It does not handle
@@ -20,14 +19,12 @@ on:
   push:
     branches:
       - main
-          
 
 permissions:
   contents: write
   pages: write
   id-token: write
   pull-requests: read
-
 
 # The name "enforce" for this job is important; do not change it. The
 # ucsb-cs156/workflows repository expects this name in order to
@@ -37,6 +34,5 @@ permissions:
 jobs:
   enforce: # the name "enforce" is important here; do not change it (see above)
     uses: ucsb-cs156/workflows/.github/workflows/00-all-checks-pass.yml@main
-    secrets: 
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-
+    secrets:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

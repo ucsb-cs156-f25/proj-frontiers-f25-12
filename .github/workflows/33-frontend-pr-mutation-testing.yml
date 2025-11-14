@@ -1,7 +1,7 @@
 name: "33-frontend-pr-mutation-testing: Stryker JS Mutation Testing (JavaScript/Jest)"
 
 # This workflow pulls incremental mutation testing results
-# if they exist for the given PR, and then 
+# if they exist for the given PR, and then
 # uses those incremental results to run mutation testing faster.
 # Reference: https://stryker-mutator.io/docs/stryker-js/incremental/
 

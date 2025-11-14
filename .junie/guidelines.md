@@ -1,6 +1,7 @@
 # Process Notes
 
 When making changes to the codebase, ensure that you:
+
 - Add unit tests under the frontend/src/tests when working on the frontend and src/test when working on the backend
 - Ensure that any added tests pass before completing.
 - Also ensure that your changes have complete line coverage.
@@ -16,6 +17,7 @@ Additionally, when adding code, attempt to pattern match to existing code in the
 If `<issue_description>` directly contradicts any of these steps, follow the instructions from `<issue_description>` first.
 
 # Information
+
 To start the backend of the project, you can run `mvn spring-boot:run`. In the event the port is taken, you can run `PORT=<port> mvn spring-boot:run` to set the port.
 
 To start the frontend, you can run `BROWSER=none npm start`.
@@ -32,9 +34,8 @@ Line Coverage for the frontend can be checked in the `frontend/` directory with 
 
 When an issue requests that you add a new backend endpoint, and says nothing about the frontend, please do as the issue says, and ONLY implement the backend endpoint.
 
-We use swagger to document and test our API endpoints in separate PRs before we proceed to implement a frontend on top of them.  This enables us to make faster progress and keeps each PR focused and simple.
+We use swagger to document and test our API endpoints in separate PRs before we proceed to implement a frontend on top of them. This enables us to make faster progress and keeps each PR focused and simple.
 
-Of course, if a PR requests a *change* to an *existing backend API endpoint, and that would break existing frontend functionality, then by all means, implement the necessary changes to the frontend in the same PR.  But do not take it upon your own initative to add frontend code for a new backend endpoint if the issue said nothing about doing that.  Just implement the new backend endpoint, and nothing else.
+Of course, if a PR requests a _change_ to an \*existing backend API endpoint, and that would break existing frontend functionality, then by all means, implement the necessary changes to the frontend in the same PR. But do not take it upon your own initative to add frontend code for a new backend endpoint if the issue said nothing about doing that. Just implement the new backend endpoint, and nothing else.
 
-Similarly, there may be times when you are asked to implement a new frontend component, along with tests, and stories for the Storybook tool.  We do this enable us to prototype user interfaces before we have completed the backend. In these cases, we use fixtures and the msw tool to mock the backend that we expect to build.   In these cases, just do what the issues asks.  If it says frontend only, that's what it means. Don't build the backend too, unless you are specifically asked to do so.
-
+Similarly, there may be times when you are asked to implement a new frontend component, along with tests, and stories for the Storybook tool. We do this enable us to prototype user interfaces before we have completed the backend. In these cases, we use fixtures and the msw tool to mock the backend that we expect to build. In these cases, just do what the issues asks. If it says frontend only, that's what it means. Don't build the backend too, unless you are specifically asked to do so.

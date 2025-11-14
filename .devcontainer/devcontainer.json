@@ -12,7 +12,7 @@
       "version": "lts"
     }
   },
-  "forwardPorts": [8080,6006],
+  "forwardPorts": [8080, 6006],
   "portsAttributes": {
     "8080": {
       "label": "Spring Boot API",

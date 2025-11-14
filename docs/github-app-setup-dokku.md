@@ -8,12 +8,9 @@ Select "New Github App". Fill in an appropriate name, and write it down. You wil
 
 ![image](https://github.com/user-attachments/assets/3d0fe501-318c-4907-a267-eff44f06f17a)
 
-
 For the homepage url, fill in `https://<appname>.dokku-<dokku-number>.cs.ucsb.edu`.
 
 ![image](https://github.com/user-attachments/assets/c0e06e2a-2aad-4b3a-af55-46448ed571ee)
-
-
 
 Next to the heading for `Identifying and authorizing users`, find the button "Add Callback URL", and click it once.
 
@@ -21,12 +18,13 @@ You should now see two spaces to add Callback URLs, like this:
 
 <img width="878" alt="image" src="https://github.com/user-attachments/assets/1f3bcf9b-113e-4d72-bc0f-f5687b63e172" />
 
-
 Fill in the two callback URLs with these values:
+
 ```
 https://<appname>.dokku-<dokku-number>.cs.ucsb.edu/api/courses/link
 https://<appname>.dokku-<dokku-number>.cs.ucsb.edu/login/oauth2/code/github
 ```
+
 Replacing `<appname>` with the name of your app, and `<dokku-number>` with your dokku installation.
 
 Then, click the checkbox for "Request user authorization (OAuth) during installation"
@@ -37,7 +35,8 @@ As an example, when filled it, it might look like this:
 
 ## Set up Webhooks and `WEBHOOK_SECRET`
 
-Scroll further and under webhooks, fill in the following url where *appname* is your appname and *xx* is your dokku server:
+Scroll further and under webhooks, fill in the following url where _appname_ is your appname and _xx_ is your dokku server:
+
 ```
 https://appname.dokku-xx.cs.ucsb.edu/api/webhooks/github
 ```
@@ -45,9 +44,10 @@ https://appname.dokku-xx.cs.ucsb.edu/api/webhooks/github
 For security, you must create a webhook secret. This prevents unauthorized parties from sending fake webhook requests to your application.
 
 Generate a strong, random secret (at least 10 characters). On your dokku machine, run this (replacing `appname` with your dokku appname, e.g. `frontiers`, `frontiers-qa`, etc:
-   ```bash
-   dokku config:set appname --no-restart WEBHOOK_SECRET=$(openssl rand -hex 20)
-   ```
+
+```bash
+dokku config:set appname --no-restart WEBHOOK_SECRET=$(openssl rand -hex 20)
+```
 
 You'll see something like this:
 
@@ -59,19 +59,19 @@ Final settings should look like this (with your webhook secret value, not the ex
 
 <img width="522" height="419" alt="image" src="https://github.com/user-attachments/assets/7102a889-666f-4917-b194-654c7e6f2a52" />
 
-
 ## Set App Permissions
 
 Now, scroll down to permissions, and under repository, set the following accesses:
+
 - Administration: Read and Write
 - Contents: Read and Write
 - Metadata: Read-only
 - Workflows: Read and Write
 
 Under Organization, select the following permissions:
+
 - Administration: Read and Write
 - Members: Read and Write
-
 
 ## Subscribe to Webhook Events
 
@@ -87,13 +87,12 @@ Click "Create".
 
 <img width="518" height="204" alt="image" src="https://github.com/user-attachments/assets/2df7b8e8-4bf7-4d59-bc0c-ec8f1adff9da" />
 
-
-Now, select "Generate Client Secret". 
+Now, select "Generate Client Secret".
 
 ![image](https://github.com/user-attachments/assets/856cf882-b6f3-44a5-b70b-115531bb8cae)
 
-
 Then, set your Github Client ID and Github Client Secret with the following commands respectively:
+
 ```bash
 dokku config:set --no-restart <appname> GITHUB_CLIENT_ID=<client-id>
 dokku config:set --no-restart <appname> GITHUB_CLIENT_SECRET=<client-secret>
@@ -105,19 +104,18 @@ Scroll down to "Private Keys" and select "Generate a Private Key"
 
 ![image](https://github.com/user-attachments/assets/7c2b958a-f912-4972-af63-9ff2c30339cd)
 
+This will download a private key file (with file name ending `.private-key.pem` to your computer, probably into your default `Downloads` directory. We'll need this file in the next step.
 
-This will download a private key file (with file name ending `.private-key.pem` to your computer, probably into your default `Downloads` directory.  We'll need this file in the next step.
-
-Note that the file has the current date in the filename; this will help you be sure you have the correct file.  We'll use this file in the next step.
+Note that the file has the current date in the filename; this will help you be sure you have the correct file. We'll use this file in the next step.
 
 ## Converting the private key file.
 
-Next, we will run a script that converts this private key 
+Next, we will run a script that converts this private key
 into a `dokku config:set ...` command.
 
-**NOTE**: Steps 1 and 2 below are **not** run on dokku, but rather on your regular computer, inside the directory where you cloned the frontiers repo.  Step 3 is run on dokku.
+**NOTE**: Steps 1 and 2 below are **not** run on dokku, but rather on your regular computer, inside the directory where you cloned the frontiers repo. Step 3 is run on dokku.
 
-1. Copy the key from wherever it downloaded to the *root of the frontiers project*, i.e. the directory where you cloned the repo.
+1. Copy the key from wherever it downloaded to the _root of the frontiers project_, i.e. the directory where you cloned the repo.
 
    For example, if `~/Downloads` is the directory where files are downloaded, then this command will copy all files ending in `.private-key.pem` to your current directory.
 
@@ -125,9 +123,10 @@ into a `dokku config:set ...` command.
    cp ~/Downloads/*.private-key.pem .
    ```
 
-   Note that you *must not commit* this private key to the Github Repo! The `.gitignore` should handle this, but be careful in any case.
+   Note that you _must not commit_ this private key to the Github Repo! The `.gitignore` should handle this, but be careful in any case.
 
-2. Now run this script: 
+2. Now run this script:
+
    ```
    ./keyconvert.sh
    ```
@@ -156,6 +155,5 @@ If you haven't yet done so, do the other steps listed in [/docs/dokku.md](dokku.
 
 For example, you'll need to do this command in order for
 the new config variables to take effect:
-
 
 `dokku ps:rebuild frontiers`
