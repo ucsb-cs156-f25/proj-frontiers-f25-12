@@ -1,3 +1,4 @@
+
 title: Documentation
 description: >- # this means to ignore newlines until "baseurl:"
   When reviewing a PR for this repo, you can see what the documentation,
@@ -17,7 +18,9 @@ collections:
     permalink: /branches/:path/
 
 repo_name: "TBD"
+
+
 repo: ucsb-cs156-f25/proj-frontiers-f25-12
 owner: ucsb-cs156-f25
 repo_name: proj-frontiers-f25-12
-pull_requests: [{"author":{"id":"U_kgDOCqFMyA","is_bot":false,"login":"jaytan3966","name":"Jayden Tan"},"headRefName":"4-ux-improvement-sort-by-last-name-or-first-name-or-better-yet-allow-selection-by-typing-part-of-the-name","number":16,"title":"4 ux improvement sort by last name or first name or better yet allow selection by typing part of the name","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/16"},{"author":{"id":"U_kgDOCqFMyA","is_bot":false,"login":"jaytan3966","name":"Jayden Tan"},"headRefName":"8-change-title-of-site-from-vite-react-to-frontiers","number":15,"title":"Fixed site title and created test for title","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/15"},{"author":{"id":"U_kgDOBaYVeg","is_bot":false,"login":"HRehwald","name":"Hauke Rehwald"},"headRefName":"hrehwald-sanitize-email","number":14,"title":"hrehwald sanitize emails for backend","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/14"}]
+pull_requests: [{"author":{"id":"U_kgDOCQQjrw","is_bot":false,"login":"AlvinLovesCode","name":""},"headRefName":"alvinc-coursestaff-remove","number":17,"title":"AlvinC -  Adding option remove from course staff delete","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/17"},{"author":{"id":"U_kgDOCqFMyA","is_bot":false,"login":"jaytan3966","name":"Jayden Tan"},"headRefName":"4-ux-improvement-sort-by-last-name-or-first-name-or-better-yet-allow-selection-by-typing-part-of-the-name","number":16,"title":"4 ux improvement sort by last name or first name or better yet allow selection by typing part of the name","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/16"},{"author":{"id":"U_kgDOCqFMyA","is_bot":false,"login":"jaytan3966","name":"Jayden Tan"},"headRefName":"8-change-title-of-site-from-vite-react-to-frontiers","number":15,"title":"Fixed site title and created test for title","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/15"},{"author":{"id":"U_kgDOBaYVeg","is_bot":false,"login":"HRehwald","name":"Hauke Rehwald"},"headRefName":"hrehwald-sanitize-email","number":14,"title":"hrehwald sanitize emails for backend","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/14"}]
