@@ -194,9 +194,9 @@ import org.springframework.web.bind.annotation.*;
     // Try to remove the Staff from the organization if they have a GitHub login
     // and removeFromOrg parameter is true
 <span class="fc bfc" id="L196" title="All 2 branches covered.">    if (removeFromOrg</span>
-<span class="pc bpc" id="L197" title="1 of 2 branches missed.">        &amp;&amp; staffMember.getGithubLogin() != null</span>
-<span class="pc bpc" id="L198" title="1 of 2 branches missed.">        &amp;&amp; course.getOrgName() != null</span>
-<span class="pc bpc" id="L199" title="1 of 2 branches missed.">        &amp;&amp; course.getInstallationId() != null) {</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">        &amp;&amp; staffMember.getGithubLogin() != null</span>
+<span class="fc bfc" id="L198" title="All 2 branches covered.">        &amp;&amp; course.getOrgName() != null</span>
+<span class="fc bfc" id="L199" title="All 2 branches covered.">        &amp;&amp; course.getInstallationId() != null) {</span>
 <span class="fc" id="L200">      orgRemovalAttempted = true;</span>
       try {
 <span class="fc" id="L202">        organizationMemberService.removeOrganizationMember(staffMember);</span>
