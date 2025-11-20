@@ -267,6 +267,13 @@ export default function HelpCsvPage() {
                     <td></td>
                   </tr>
                   <tr>
+                    <td>section</td>
+                    <td>Student's section time</td>
+                    <td>
+                      Date, Time, and Location of Section
+                    </td>
+                  </tr>
+                  <tr>
                     <td>userId</td>
                     <td>Internal user ID</td>
                     <td>Links to the user account in the system</td>
@@ -293,6 +300,13 @@ export default function HelpCsvPage() {
                     <td>orgStatus</td>
                     <td>GitHub organization status</td>
                     <td>PENDING, JOINCOURSE, INVITED, MEMBER, or OWNER</td>
+                  </tr>
+                  <tr>
+                    <td>teams</td>
+                    <td>Student's Team(s)</td>
+                    <td>
+                      Name of Team(s)
+                    </td>
                   </tr>
                 </tbody>
               </table>
