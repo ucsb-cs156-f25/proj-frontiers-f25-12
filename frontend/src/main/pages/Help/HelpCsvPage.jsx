@@ -269,9 +269,7 @@ export default function HelpCsvPage() {
                   <tr>
                     <td>section</td>
                     <td>Student's section time</td>
-                    <td>
-                      Date, Time, and Location of Section
-                    </td>
+                    <td>Date, Time, and Location of Section</td>
                   </tr>
                   <tr>
                     <td>userId</td>
@@ -304,9 +302,7 @@ export default function HelpCsvPage() {
                   <tr>
                     <td>teams</td>
                     <td>Student's Team(s)</td>
-                    <td>
-                      Name of Team(s)
-                    </td>
+                    <td>Name of Team(s)</td>
                   </tr>
                 </tbody>
               </table>
