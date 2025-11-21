@@ -285,22 +285,22 @@ export default function HelpCsvPage() {
                   </tr>
                   <tr>
                     <td>FIRSTNAME</td>
-                    <td>Student's first name</td>
+                    <td>Student&apos;s first name</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>LASTNAME</td>
-                    <td>Student's last name</td>
+                    <td>Student&apos;s last name</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>EMAIL</td>
-                    <td>Student's email address</td>
+                    <td>Student&apos;s email address</td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>SECTION</td>
-                    <td>Student's section time</td>
+                    <td>Student&apos;s section time</td>
                     <td>Date, Time, and Location of Section</td>
                   </tr>
                   <tr>
@@ -333,7 +333,7 @@ export default function HelpCsvPage() {
                   </tr>
                   <tr>
                     <td>TEAMS</td>
-                    <td>Student's Team(s)</td>
+                    <td>Student&apos;s Team(s)</td>
                     <td>Name of Team(s)</td>
                   </tr>
                 </tbody>
