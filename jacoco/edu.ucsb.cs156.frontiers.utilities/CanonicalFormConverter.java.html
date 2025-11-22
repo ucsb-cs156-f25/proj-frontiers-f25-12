@@ -16,7 +16,7 @@
    * @return email in canonical form
    */
   public static String convertToValidEmail(String email) {
-<span class="fc" id="L19">    String canonicalEmail = email.replace(&quot;@umail.ucsb.edu&quot;, &quot;@ucsb.edu&quot;).toLowerCase();</span>
+<span class="fc" id="L19">    String canonicalEmail = email.replace(&quot;@umail.ucsb.edu&quot;, &quot;@ucsb.edu&quot;).toLowerCase().strip();</span>
 <span class="fc" id="L20">    return canonicalEmail;</span>
   }
 
