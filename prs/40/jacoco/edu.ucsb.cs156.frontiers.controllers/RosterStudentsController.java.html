@@ -277,10 +277,10 @@ import org.springframework.web.server.ResponseStatusException;
         || lastName == null
         || studentId == null
         || section == null
-<span class="pc bpc" id="L280" title="1 of 2 branches missed.">        || firstName.trim().isEmpty()</span>
-<span class="pc bpc" id="L281" title="1 of 2 branches missed.">        || lastName.trim().isEmpty()</span>
-<span class="pc bpc" id="L282" title="1 of 2 branches missed.">        || section.trim().isEmpty()</span>
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">        || studentId.trim().isEmpty()) {</span>
+<span class="fc bfc" id="L280" title="All 2 branches covered.">        || firstName.trim().isEmpty()</span>
+<span class="fc bfc" id="L281" title="All 2 branches covered.">        || lastName.trim().isEmpty()</span>
+<span class="fc bfc" id="L282" title="All 2 branches covered.">        || section.trim().isEmpty()</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">        || studentId.trim().isEmpty()) {</span>
 <span class="fc" id="L284">      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, &quot;Required fields cannot be empty&quot;);</span>
     }
 
