@@ -278,4 +278,50 @@ public class RepositoryControllerTests extends ControllerTestCase {
     String actualJson = response.getResponse().getContentAsString();
     assertEquals(expectedJson, actualJson);
   }
+
+  @Test
+  @WithMockUser(roles = {"ADMIN"})
+  public void delete_repos_notFound() throws Exception {
+    // courseRepository.findById returns empty -> orElseThrow should trigger
+    doReturn(Optional.empty()).when(courseRepository).findById(eq(1L));
+
+    MvcResult response =
+        mockMvc
+            .perform(
+                post("/api/repos/deleteRepos")
+                    .with(csrf())
+                    .param("courseId", "1")
+                    .param("assignmentName", "jpa01"))
+            .andExpect(status().isNotFound())
+            .andReturn();
+
+    Map<String, Object> json = responseToJson(response);
+    assertEquals("EntityNotFoundException", json.get("type"));
+    assertEquals("Course with id 1 not found", json.get("message"));
+  }
+
+  @Test
+  @WithMockUser(roles = {"ADMIN"})
+  public void delete_repos_just_no_install_id() throws Exception {
+    Course course =
+        Course.builder()
+            .courseName("CS156")
+            .orgName("ucsb-cs156") // non-null
+            .instructorEmail(currentUserService.getUser().getEmail())
+            .build();
+    doReturn(Optional.of(course)).when(courseRepository).findById(eq(1L));
+
+    MvcResult response =
+        mockMvc
+            .perform(
+                post("/api/repos/deleteRepos")
+                    .with(csrf())
+                    .param("courseId", "1")
+                    .param("assignmentName", "jpa01"))
+            .andExpect(status().isBadRequest())
+            .andReturn();
+
+    Map<String, Object> json = responseToJson(response);
+    assertEquals("NoLinkedOrganizationException", json.get("type"));
+  }
 }
