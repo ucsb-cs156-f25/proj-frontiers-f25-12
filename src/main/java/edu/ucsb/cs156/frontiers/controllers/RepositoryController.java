@@ -6,6 +6,7 @@ import edu.ucsb.cs156.frontiers.enums.RepositoryPermissions;
 import edu.ucsb.cs156.frontiers.errors.EntityNotFoundException;
 import edu.ucsb.cs156.frontiers.errors.NoLinkedOrganizationException;
 import edu.ucsb.cs156.frontiers.jobs.CreateStudentRepositoriesJob;
+import edu.ucsb.cs156.frontiers.jobs.DeleteAssignmentRepositoriesJob;
 import edu.ucsb.cs156.frontiers.repositories.CourseRepository;
 import edu.ucsb.cs156.frontiers.services.RepositoryService;
 import edu.ucsb.cs156.frontiers.services.jobs.JobService;
@@ -60,6 +61,33 @@ public class RepositoryController extends ApiController {
               .repositoryService(repositoryService)
               .course(course)
               .permissions(permissions)
+              .build();
+      return jobService.runAsJob(job);
+    }
+  }
+
+  /**
+   * Fires a job that deletes all repos matching the assignment naming convention
+   *
+   * @param courseId ID of course to delete repos from
+   * @param assignmentName the assignment prefix used when creating repos (e.g., "jpa01")
+   * @return the {@link edu.ucsb.cs156.frontiers.entities.Job Job} started to delete the repos
+   */
+  @PostMapping("/deleteRepos")
+  @PreAuthorize("@CourseSecurity.hasManagePermissions(#root, #courseId)")
+  public Job deleteRepos(@RequestParam Long courseId, @RequestParam String assignmentName) {
+    Course course =
+        courseRepository
+            .findById(courseId)
+            .orElseThrow(() -> new EntityNotFoundException(Course.class, courseId));
+    if (course.getOrgName() == null || course.getInstallationId() == null) {
+      throw new NoLinkedOrganizationException(course.getCourseName());
+    } else {
+      DeleteAssignmentRepositoriesJob job =
+          DeleteAssignmentRepositoriesJob.builder()
+              .assignmentName(assignmentName)
+              .repositoryService(repositoryService)
+              .course(course)
               .build();
       return jobService.runAsJob(job);
     }
