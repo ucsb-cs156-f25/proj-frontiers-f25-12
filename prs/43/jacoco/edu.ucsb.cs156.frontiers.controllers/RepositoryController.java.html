@@ -79,8 +79,8 @@ import org.springframework.web.bind.annotation.RestController;
 <span class="fc" id="L79">    Course course =</span>
         courseRepository
 <span class="fc" id="L81">            .findById(courseId)</span>
-<span class="pc" id="L82">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
-<span class="pc bpc" id="L83" title="1 of 4 branches missed.">    if (course.getOrgName() == null || course.getInstallationId() == null) {</span>
+<span class="fc" id="L82">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
+<span class="fc bfc" id="L83" title="All 4 branches covered.">    if (course.getOrgName() == null || course.getInstallationId() == null) {</span>
 <span class="fc" id="L84">      throw new NoLinkedOrganizationException(course.getCourseName());</span>
     } else {
       DeleteAssignmentRepositoriesJob job =
