@@ -45,7 +45,7 @@ import org.springframework.web.bind.annotation.*;
 <span class="fc" id="L45">    Course course =</span>
         courseRepository
 <span class="fc" id="L47">            .findById(courseId)</span>
-<span class="pc" id="L48">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Course not found: &quot; + courseId));</span>
+<span class="fc" id="L48">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Course not found: &quot; + courseId));</span>
     Assignment assignment =
 <span class="fc" id="L50">        Assignment.builder()</span>
 <span class="fc" id="L51">            .course(course)</span>
