@@ -90,7 +90,7 @@ import org.springframework.web.server.ResponseStatusException;
 <span class="fc" id="L90">            .studentId(studentId)</span>
 <span class="fc" id="L91">            .firstName(firstName)</span>
 <span class="fc" id="L92">            .lastName(lastName)</span>
-<span class="fc" id="L93">            .email(email)</span>
+<span class="fc" id="L93">            .email(email.strip())</span>
 <span class="fc" id="L94">            .build();</span>
 
 <span class="fc" id="L96">    UpsertResponse upsertResponse = upsertStudent(rosterStudent, course, RosterStatus.MANUAL);</span>
