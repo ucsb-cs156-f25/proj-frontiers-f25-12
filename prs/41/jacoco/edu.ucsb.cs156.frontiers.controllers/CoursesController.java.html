@@ -356,14 +356,14 @@ import org.springframework.web.bind.annotation.*;
 <span class="fc" id="L356">            .orElseThrow(() -&gt; new EntityNotFoundException(Course.class, courseId));</span>
 
     // Validate that the email exists in either instructor or admin table
-<span class="fc" id="L359">    boolean isInstructor = instructorRepository.existsByEmail(instructorEmail);</span>
-<span class="fc" id="L360">    boolean isAdmin = adminRepository.existsByEmail(instructorEmail);</span>
+<span class="fc" id="L359">    boolean isInstructor = instructorRepository.existsByEmail(instructorEmail.strip());</span>
+<span class="fc" id="L360">    boolean isAdmin = adminRepository.existsByEmail(instructorEmail.strip());</span>
 
 <span class="fc bfc" id="L362" title="All 4 branches covered.">    if (!isInstructor &amp;&amp; !isAdmin) {</span>
 <span class="fc" id="L363">      throw new IllegalArgumentException(&quot;Email must belong to either an instructor or admin&quot;);</span>
     }
 
-<span class="fc" id="L366">    course.setInstructorEmail(instructorEmail);</span>
+<span class="fc" id="L366">    course.setInstructorEmail(instructorEmail.strip());</span>
 <span class="fc" id="L367">    Course savedCourse = courseRepository.save(course);</span>
 
 <span class="fc" id="L369">    return new InstructorCourseView(savedCourse);</span>
