@@ -178,7 +178,7 @@ import org.springframework.web.bind.annotation.*;
       @Parameter(
               name = &quot;removeFromOrg&quot;,
               description = &quot;Whether to remove staff from GitHub organization&quot;)
-          @RequestParam(defaultValue = &quot;true&quot;)
+          @RequestParam(defaultValue = &quot;false&quot;)
           boolean removeFromOrg)
       throws EntityNotFoundException {
 <span class="fc" id="L184">    CourseStaff staffMember =</span>
