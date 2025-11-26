@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-f25/proj-frontiers-f25-12
 owner: ucsb-cs156-f25
 repo_name: proj-frontiers-f25-12
-pull_requests: [{"author":{"id":"U_kgDOC6IUpQ","is_bot":false,"login":"joshua-dev-codes","name":""},"headRefName":"ja-assignments-delete-job","number":43,"title":"JA - Added DELETE job for assignments ","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/43"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjIyMTgxODYz","is_bot":false,"login":"speeeday","name":""},"headRefName":"sanjay-fix-pr45","number":47,"title":"Bj assignments put","url":"https://github.com/ucsb-cs156-f25/proj-frontiers-f25-12/pull/47"}]
