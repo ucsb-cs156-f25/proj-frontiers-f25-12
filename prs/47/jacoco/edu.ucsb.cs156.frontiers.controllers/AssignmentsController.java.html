@@ -94,18 +94,18 @@ import org.springframework.web.bind.annotation.*;
       @Parameter(name = &quot;visibility&quot;) @RequestParam String visibility,
       @Parameter(name = &quot;permission&quot;) @RequestParam String permission) {
 
-<span class="nc" id="L97">    Assignment assignment =</span>
+<span class="fc" id="L97">    Assignment assignment =</span>
         assignmentRepository
-<span class="nc" id="L99">            .findById(id)</span>
-<span class="nc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, id));</span>
+<span class="fc" id="L99">            .findById(id)</span>
+<span class="fc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, id));</span>
 
-<span class="nc" id="L102">    assignment.setAsnType(asn_type);</span>
-<span class="nc" id="L103">    assignment.setVisibility(visibility);</span>
-<span class="nc" id="L104">    assignment.setPermission(permission);</span>
+<span class="fc" id="L102">    assignment.setAsnType(asn_type);</span>
+<span class="fc" id="L103">    assignment.setVisibility(visibility);</span>
+<span class="fc" id="L104">    assignment.setPermission(permission);</span>
 
-<span class="nc" id="L106">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
+<span class="fc" id="L106">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
 
-<span class="nc" id="L108">    return new InstructorAssignmentView(savedAssignment);</span>
+<span class="fc" id="L108">    return new InstructorAssignmentView(savedAssignment);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
