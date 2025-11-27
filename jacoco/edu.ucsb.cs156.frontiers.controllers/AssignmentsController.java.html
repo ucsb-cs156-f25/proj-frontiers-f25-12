@@ -2,6 +2,7 @@
 
 import edu.ucsb.cs156.frontiers.entities.Assignment;
 import edu.ucsb.cs156.frontiers.entities.Course;
+import edu.ucsb.cs156.frontiers.errors.EntityNotFoundException;
 import edu.ucsb.cs156.frontiers.repositories.AssignmentRepository;
 import edu.ucsb.cs156.frontiers.repositories.CourseRepository;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = &quot;Assignment&quot;)
 @RequestMapping(&quot;/api/assignments&quot;)
 @RestController
-<span class="fc" id="L18">@Slf4j</span>
-<span class="fc" id="L19">public class AssignmentsController extends ApiController {</span>
+<span class="fc" id="L19">@Slf4j</span>
+<span class="fc" id="L20">public class AssignmentsController extends ApiController {</span>
 
   @Autowired private AssignmentRepository assignmentRepository;
 
@@ -42,37 +43,69 @@ import org.springframework.web.bind.annotation.*;
       @Parameter(name = &quot;visibility&quot;) @RequestParam String visibility,
       @Parameter(name = &quot;permission&quot;) @RequestParam String permission) {
     // get course by courseId
-<span class="fc" id="L45">    Course course =</span>
+<span class="fc" id="L46">    Course course =</span>
         courseRepository
-<span class="fc" id="L47">            .findById(courseId)</span>
-<span class="fc" id="L48">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Course not found: &quot; + courseId));</span>
+<span class="fc" id="L48">            .findById(courseId)</span>
+<span class="fc" id="L49">            .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Course not found: &quot; + courseId));</span>
     Assignment assignment =
-<span class="fc" id="L50">        Assignment.builder()</span>
-<span class="fc" id="L51">            .course(course)</span>
-<span class="fc" id="L52">            .name(name)</span>
-<span class="fc" id="L53">            .asnType(asn_type)</span>
-<span class="fc" id="L54">            .visibility(visibility)</span>
-<span class="fc" id="L55">            .permission(permission)</span>
-<span class="fc" id="L56">            .build();</span>
-<span class="fc" id="L57">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
+<span class="fc" id="L51">        Assignment.builder()</span>
+<span class="fc" id="L52">            .course(course)</span>
+<span class="fc" id="L53">            .name(name)</span>
+<span class="fc" id="L54">            .asnType(asn_type)</span>
+<span class="fc" id="L55">            .visibility(visibility)</span>
+<span class="fc" id="L56">            .permission(permission)</span>
+<span class="fc" id="L57">            .build();</span>
+<span class="fc" id="L58">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
 
-<span class="fc" id="L59">    return new InstructorAssignmentView(savedAssignment);</span>
+<span class="fc" id="L60">    return new InstructorAssignmentView(savedAssignment);</span>
   }
 
   /** Projection of Assignment entity with fields that are relevant for instructors and admins */
-<span class="fc" id="L63">  public static record InstructorAssignmentView(</span>
+<span class="fc" id="L64">  public static record InstructorAssignmentView(</span>
       Long id, Course course, String name, String asnType, String visibility, String permission) {
 
     // Creates view from Assignment entity
     public InstructorAssignmentView(Assignment a) {
-<span class="fc" id="L68">      this(</span>
-<span class="fc" id="L69">          a.getId(),</span>
-<span class="fc" id="L70">          a.getCourse(),</span>
-<span class="fc" id="L71">          a.getName(),</span>
-<span class="fc" id="L72">          a.getAsnType(),</span>
-<span class="fc" id="L73">          a.getVisibility(),</span>
-<span class="fc" id="L74">          a.getPermission());</span>
-<span class="fc" id="L75">    }</span>
+<span class="fc" id="L69">      this(</span>
+<span class="fc" id="L70">          a.getId(),</span>
+<span class="fc" id="L71">          a.getCourse(),</span>
+<span class="fc" id="L72">          a.getName(),</span>
+<span class="fc" id="L73">          a.getAsnType(),</span>
+<span class="fc" id="L74">          a.getVisibility(),</span>
+<span class="fc" id="L75">          a.getPermission());</span>
+<span class="fc" id="L76">    }</span>
+  }
+
+  /**
+   * This method updates an existing assignment.
+   *
+   * @param id the id of the assignment
+   * @param asn_type the new type of the assignment
+   * @param visibility the new visibility of the assignment
+   * @param permission the new permission on the assignment
+   * @return the updated assignment
+   */
+  @Operation(summary = &quot;Update an existing assignment&quot;)
+  @PreAuthorize(&quot;@CourseSecurity.hasManagePermissions(#root, #id)&quot;)
+  @PutMapping(&quot;&quot;)
+  public InstructorAssignmentView updateAssignment(
+      @Parameter(name = &quot;id&quot;) @RequestParam Long id,
+      @Parameter(name = &quot;asn_type&quot;) @RequestParam String asn_type,
+      @Parameter(name = &quot;visibility&quot;) @RequestParam String visibility,
+      @Parameter(name = &quot;permission&quot;) @RequestParam String permission) {
+
+<span class="fc" id="L97">    Assignment assignment =</span>
+        assignmentRepository
+<span class="fc" id="L99">            .findById(id)</span>
+<span class="fc" id="L100">            .orElseThrow(() -&gt; new EntityNotFoundException(Assignment.class, id));</span>
+
+<span class="fc" id="L102">    assignment.setAsnType(asn_type);</span>
+<span class="fc" id="L103">    assignment.setVisibility(visibility);</span>
+<span class="fc" id="L104">    assignment.setPermission(permission);</span>
+
+<span class="fc" id="L106">    Assignment savedAssignment = assignmentRepository.save(assignment);</span>
+
+<span class="fc" id="L108">    return new InstructorAssignmentView(savedAssignment);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.12.202403310830</span></div></body></html>
