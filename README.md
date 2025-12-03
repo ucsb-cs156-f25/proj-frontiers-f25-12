@@ -1,7 +1,7 @@
 # proj-frontiers
 
-* Prod: <https://frontiers.dokku-00.cs.ucsb.edu>
-* QA: <https://frontiers-qa.dokku-00.cs.ucsb.edu>
+* Prod: <https://frontiers.dokku-12.cs.ucsb.edu>
+* QA: <https://frontiers-qa.dokku-12.cs.ucsb.edu>
 
 ### Product Planning Doc: 
 - <https://docs.google.com/document/d/1IXxmD4hBvDq6uSnpSukdV30o4xyaIAgiRt_Mpqv51yw/edit?usp=sharing>
