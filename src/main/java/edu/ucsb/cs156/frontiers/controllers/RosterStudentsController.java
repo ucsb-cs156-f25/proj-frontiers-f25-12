@@ -276,7 +276,6 @@ public class RosterStudentsController extends ApiController {
     if (firstName == null
         || lastName == null
         || studentId == null
-        || section == null
         || firstName.trim().isEmpty()
         || lastName.trim().isEmpty()
         || studentId.trim().isEmpty()) {
@@ -301,7 +300,10 @@ public class RosterStudentsController extends ApiController {
     rosterStudent.setFirstName(firstName.trim());
     rosterStudent.setLastName(lastName.trim());
     rosterStudent.setStudentId(studentId.trim());
-    rosterStudent.setSection(section.trim());
+
+    if (section != null) {
+      rosterStudent.setSection(section.trim());
+    }
 
     return rosterStudentRepository.save(rosterStudent);
   }
